@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B222CD3E1A86CC1800C4F4F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B222CD3D1A86CC1800C4F4F0 /* AppDelegate.swift */; };
-		B222CD401A86CC1800C4F4F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B222CD3F1A86CC1800C4F4F0 /* ViewController.swift */; };
+		B222CD401A86CC1800C4F4F0 /* RecordAndPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B222CD3F1A86CC1800C4F4F0 /* RecordAndPlayViewController.swift */; };
 		B222CD431A86CC1800C4F4F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B222CD411A86CC1800C4F4F0 /* Main.storyboard */; };
 		B222CD451A86CC1800C4F4F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B222CD441A86CC1800C4F4F0 /* Images.xcassets */; };
 		B222CD481A86CC1800C4F4F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B222CD461A86CC1800C4F4F0 /* LaunchScreen.xib */; };
@@ -29,7 +29,7 @@
 		B222CD381A86CC1800C4F4F0 /* RecordMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B222CD3C1A86CC1800C4F4F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B222CD3D1A86CC1800C4F4F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B222CD3F1A86CC1800C4F4F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B222CD3F1A86CC1800C4F4F0 /* RecordAndPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAndPlayViewController.swift; sourceTree = "<group>"; };
 		B222CD421A86CC1800C4F4F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B222CD441A86CC1800C4F4F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B222CD471A86CC1800C4F4F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				B222CD3D1A86CC1800C4F4F0 /* AppDelegate.swift */,
-				B222CD3F1A86CC1800C4F4F0 /* ViewController.swift */,
+				B222CD3F1A86CC1800C4F4F0 /* RecordAndPlayViewController.swift */,
 				B222CD411A86CC1800C4F4F0 /* Main.storyboard */,
 				B222CD441A86CC1800C4F4F0 /* Images.xcassets */,
 				B222CD461A86CC1800C4F4F0 /* LaunchScreen.xib */,
@@ -212,7 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B222CD401A86CC1800C4F4F0 /* ViewController.swift in Sources */,
+				B222CD401A86CC1800C4F4F0 /* RecordAndPlayViewController.swift in Sources */,
 				B222CD3E1A86CC1800C4F4F0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +407,7 @@
 				B222CD591A86CC1800C4F4F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B222CD5A1A86CC1800C4F4F0 /* Build configuration list for PBXNativeTarget "RecordMeTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +416,7 @@
 				B222CD5C1A86CC1800C4F4F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

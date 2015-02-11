@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RecordAndPlayViewController.swift
 //  RecordMe
 //
 //  Created by Kunal Chitalia on 2/7/15.
@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
+class RecordAndPlayViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
 
     @IBOutlet var recordButton: UIButton!
     
@@ -21,10 +21,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     
     var audioPlayer: AVAudioPlayer?
     var audioRecorder: AVAudioRecorder?
+    var audioEngine:AVAudioEngine!
+    var audioFile:AVAudioFile!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         playButton.enabled = false
         stopButton.enabled = false
         
@@ -59,13 +60,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         } else {
             audioRecorder?.prepareToRecord()
         }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     @IBAction func recordVoice(sender: UIButton) {
         if audioRecorder?.recording == false {
@@ -73,6 +69,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
             stopButton.enabled = true
             audioRecorder?.record()
         }
+        
     }
     
     @IBAction func stopAudio(sender: UIButton) {
@@ -85,7 +82,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         } else {
             audioPlayer?.stop()
         }
-        
     }
 
     @IBAction func playAudio(sender: UIButton) {
@@ -103,9 +99,27 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
             if let err = error {
                 println("audioPlayer error: \(err.localizedDescription)")
             } else {
-                audioPlayer?.play()
+                //audioPlayer?.play()
+                var audioPlayerNode = AVAudioPlayerNode()
+                audioEngine = AVAudioEngine()
+                audioFile = AVAudioFile(forReading: audioRecorder?.url, error: nil)
+                audioEngine.attachNode(audioPlayerNode)
+                
+                var changePitchEffect = AVAudioUnitTimePitch()
+                changePitchEffect.pitch = -1000
+                audioEngine.attachNode(changePitchEffect)
+                
+                audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+                audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+                
+                audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+                audioEngine.startAndReturnError(nil)
+                
+                audioPlayerNode.play()
+
             }
         }
+        
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
@@ -123,5 +137,25 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     func audioRecorderEncodeErrorDidOccur(recorder: AVAudioRecorder!, error: NSError!) {
         println("Audio Record Encode Error")
     }
+    
+    /*func playAudioWithVariablePitch(pitch: Float) {
+        audioPlayer?.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        var audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        var changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = pitch
+        audioEngine.attachNode(changePitchEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        audioEngine.startAndReturnError(nil)
+        
+        audioPlayerNode.play()
+    }*/
 }
 
